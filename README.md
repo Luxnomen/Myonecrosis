@@ -19,3 +19,9 @@ This repository contains code designed to demonstrate the Master Boot Record (MB
    - `0xEB 0xFE`: CPU Infinite Loop (JMP instruction).
    - **ASCII-to-Hex**: Custom string data converted to Hexadecimal for low-level display.
 3. **Anti-Forensics**: The `self_delete` function utilizes a secondary batch process to bypass file-lock restrictions on Windows, ensuring the executable is removed post-execution.
+
+## How to Run the Research Lab
+To prevent accidental execution, Myonecrosis requires a 'Safety Key'.
+1. Create a file named `antidote.txt` in the program directory.
+2. Run the executable.
+3. **Emergency Stop**: Deleting `antidote.txt` while the program is running will trigger an immediate shutdown and self-deletion sequence.
