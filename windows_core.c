@@ -1,30 +1,32 @@
 #include <windows.h>
 #include <stdio.h>
+#include "self_destruct.h"
 
-// This is the Machine Code the computer reads before Windows even starts
-// 0xEB, 0xFE is a "JMP $" command—it freezes the CPU in a loop
+// This payload contains your secret message in Hexadecimal
 unsigned char payload[] = {
-    0xeb, 0xfe, 
-    'M', 'y', 'o', 'n', 'e', 'c', 'r', 'o', 's', 'i', 's', ' ',
-    'v', '1', '.', '0'
+    0xeb, 0xfe, // The infinite loop (Freeze)
+    0x4E, 0x4F, 0x20, 0x4D, 0x4F, 0x52, 0x45, 0x20, 0x4C, 0x49, 0x47, 0x48, 0x54, 0x2E, // NO MORE LIGHT.
+    0x0D, 0x0A, // New line
+    0x4E, 0x4F, 0x20, 0x4D, 0x4F, 0x52, 0x45, 0x20, 0x48, 0x4F, 0x50, 0x45, 0x2E      // NO MORE HOPE.
 };
 
 int main() {
-    printf("--- Myonecrosis Windows Core ---\n");
-    printf("Payload Size: %lu bytes\n", sizeof(payload));
+    printf("--- MYONECROSIS RESEARCH LAB ---\n");
+    printf("Preparing Payload: NO MORE LIGHT / NO MORE HOPE\n");
 
-    // Simulation of the MBR Strike
     int result = MessageBox(0, 
-        "Execute MBR Payload Simulation?", 
-        "Myonecrosis Research", 
-        MB_YESNO | MB_ICONHAZARD);
+        "CRITICAL: Ready to write MBR Payload. This will make the system unbootable.\n\nContinue with simulation?", 
+        "Myonecrosis v1.0", 
+        MB_YESNO | MB_ICONERROR);
 
     if (result == IDYES) {
-        printf("[!] Accessing \\.\PhysicalDrive0...\n");
-        printf("[!] Writing payload to sector 0...\n");
-        // In a real test, this is where WriteFile would go
-        printf("[SUCCESS] MBR has been 'rotted'.\n");
+        printf("[!] Simulation: Targeting Master Boot Record...\n");
+        printf("[!] Simulation: Message injected successfully.\n");
+        printf("[SUCCESS] Computer will display 'NO MORE LIGHT' on next boot.\n");
     }
+
+    printf("\nProject complete. Cleaning up traces...\n");
+    self_delete();
 
     return 0;
 }
