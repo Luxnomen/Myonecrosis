@@ -12,3 +12,10 @@ This repository contains code designed to demonstrate the Master Boot Record (MB
 - Windows MBR access logic
 - Background process simulation
 - Educational "Safety Demo" mode
+
+## Technical Analysis
+1. **MBR Exploitation**: The program targets Sector 0 of the Physical Drive. By overwriting the first 512 bytes, the BIOS fails to find the Windows Boot Manager.
+2. **Payload Analysis**:
+   - `0xEB 0xFE`: CPU Infinite Loop (JMP instruction).
+   - **ASCII-to-Hex**: Custom string data converted to Hexadecimal for low-level display.
+3. **Anti-Forensics**: The `self_delete` function utilizes a secondary batch process to bypass file-lock restrictions on Windows, ensuring the executable is removed post-execution.
